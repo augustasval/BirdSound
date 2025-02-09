@@ -6,7 +6,7 @@ export function Footer({
   ...props
 }) {
   return (
-    <div className="flex flex-col items-center  mt-20 bg-gray-[200] w-full">
+    <div className="flex flex-col items-center  mt-20 bg-gray-[200] w-full mb-6">
       <Separator className="my-4 " />
       <div className="space-y-1">
         <h4 className="text-sm font-medium leading-none">What the birds limited.</h4>

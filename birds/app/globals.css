@@ -8,7 +8,7 @@ body {
 
 @layer base {
   :root {
-    --background: 0 0% 95%; /* Light gray background color */
+    --background: linear-gradient(#e66464cb, #9198e5); /* Define the gradient */
     --foreground: 0 0% 3.9%;
     --card: 0 0% 100%;
     --card-foreground: 0 0% 3.9%;
@@ -83,6 +83,7 @@ body {
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--background);
   }
 }

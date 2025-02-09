@@ -7,9 +7,9 @@ import { Separator } from "@/components/ui/separator";
 import { Footer } from "@/components/ui/footer";
 export default function LoginPage() {
   return (
-    <div className="w-full h-screen">
-      <div className="w-full max-w-4xl mx-auto w-min-screen">
-        <div className="bg-gray-50 shadow-lg rounded-sm  text-center h-full min-w-[500]" style={{ position: 'sticky', top: 0 }}>
+    <div className="w-full h-screen  ">
+      <div className="w-full max-w-3xl mx-auto w-min-screen  from-slate-500 to-red-900" >
+        <div className=" rounded-sm  text-center h-full min-w-[500]" style={{ position: 'sticky', top: 0 }}>
           <div className="flex flex-col items-center">
             <Welcome/>
             <Footer/>
