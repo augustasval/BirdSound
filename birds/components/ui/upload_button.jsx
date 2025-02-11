@@ -1,47 +1,8 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Meyda from 'meyda';
 
-export function RecordButton({
-  className,
-  ...props
-}) {
-  const [isRecording, setIsRecording] = useState(false);
+export function UploadButton({ className, ...props }) {
   const [audioFeatures, setAudioFeatures] = useState(null);
-  const mediaRecorderRef = useRef(null);
-  const audioChunksRef = useRef([]);
-
-  const handleStartRecording = async () => {
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      const mediaRecorder = new MediaRecorder(stream);
-      mediaRecorderRef.current = mediaRecorder;
-      audioChunksRef.current = [];
-
-      mediaRecorder.ondataavailable = (event) => {
-        audioChunksRef.current.push(event.data);
-      };
-
-      mediaRecorder.onstop = async () => {
-        const audioBlob = new Blob(audioChunksRef.current, { type: 'audio/wav' });
-
-        // Extract audio features
-        const features = await extractAudioFeatures(audioBlob);
-        console.log('Extracted Features:', features);
-      };
-
-      mediaRecorder.start();
-      setIsRecording(true);
-    } catch (error) {
-      console.error('Error accessing microphone:', error);
-    }
-  };
-
-  const handleStopRecording = () => {
-    if (mediaRecorderRef.current) {
-      mediaRecorderRef.current.stop();
-      setIsRecording(false);
-    }
-  };
 
   const extractAudioFeatures = async (file) => {
     const arrayBuffer = await file.arrayBuffer();
@@ -131,13 +92,13 @@ export function RecordButton({
   }, [audioFeatures]);
 
   return (
-    <div className="text-gray-500 flex-1 flex flex-col items-center justify-center h-80 w-full  transition delay-50 duration-300 ease-in-out hover:-translate-y-1 hover:scale-20">
+    <div className="text-gray-500 flex-1 flex flex-col items-center justify-center h-80 w-full transition delay-50 duration-300 ease-in-out hover:-translate-y-1 hover:scale-20">
       <label className="flex flex-col items-center justify-center md:h-4/6 h-56 md:w-full w-full bg-green-100 shadow-md rounded-t-xl cursor-pointer">
-        <img src="/images/microphone-svgrepo-com.svg" alt="Microphone" className="md:p-10 p-4 w-40 h-40 md:w-full md:h-full" />
-        <input type="button" onClick={isRecording ? handleStopRecording : handleStartRecording} className="hidden" />
+        <img src="/images/upload-minimalistic-svgrepo-com.svg" alt="Upload" className="md:p-10 p-4 w-40 h-40 md:w-full md:h-full" />
+        <input type="file" accept="audio/*" onChange={handleFileUpload} className="hidden" />
       </label>
       <p className="font-bold bg-emerald-300 md:w-72 w-full min-h-16 h-1/6 flex items-center justify-center p-2 rounded-b-xl">
-        {isRecording ? 'Stop Recording' : 'Record the mysterious voice'}
+        Upload a recording
       </p>
     </div>
   );
