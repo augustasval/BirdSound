@@ -132,13 +132,10 @@ export function RecordButton({
 
   return (
     <div className="text-gray-500 flex-1 flex flex-col items-center justify-center h-80 w-full  transition delay-50 duration-300 ease-in-out hover:-translate-y-1 hover:scale-20">
-      <label className="flex flex-col items-center justify-center md:h-4/6 h-56 md:w-full w-full bg-green-100 shadow-md rounded-t-xl cursor-pointer">
+      <label className="flex flex-col items-center justify-center md:h-4/6 h-56 md:w-full w-full bg-green-100 shadow-md rounded-2xl cursor-pointer">
         <img src="/images/microphone-svgrepo-com.svg" alt="Microphone" className="md:p-10 p-4 w-40 h-40 md:w-full md:h-full" />
         <input type="button" onClick={isRecording ? handleStopRecording : handleStartRecording} className="hidden" />
       </label>
-      <p className="font-bold bg-emerald-300 md:w-72 w-full min-h-16 h-1/6 flex items-center justify-center p-2 rounded-b-xl">
-        {isRecording ? 'Stop Recording' : 'Record the mysterious voice'}
-      </p>
     </div>
   );
 }
